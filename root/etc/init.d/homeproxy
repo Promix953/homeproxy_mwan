@@ -27,6 +27,19 @@ log() {
 	echo -e "$(date "+%Y-%m-%d %H:%M:%S") [DAEMON] $*" >> "$LOG_PATH"
 }
 
+boot_func() { 
+	# start delay
+	log "HomeProxy" "Start after 30 seconds."
+	sleep 30
+
+	# start
+	start
+}
+
+boot() {
+	boot_func &
+}
+
 start_service() {
 	config_load "$CONF"
 
