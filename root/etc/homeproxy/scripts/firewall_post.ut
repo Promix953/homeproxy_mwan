@@ -80,7 +80,7 @@ let self_mark, redirect_port,
     tun_name, tun_mark;
 
 if (match(proxy_mode, /redirect/)) {
-	self_mark = uci.get(cfgname, 'infra', 'self_mark') || '100';
+	self_mark = `and 0xff == ${uci.get(cfgname, 'infra', 'self_mark') || '100'}`;
 	redirect_port = uci.get(cfgname, 'infra', 'redirect_port') || '5331';
 }
 if (match(proxy_mode, /tproxy/))
